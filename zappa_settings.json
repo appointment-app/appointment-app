@@ -1,0 +1,7 @@
+{
+    "dev": {
+        "app_function": "app.app", 
+        "s3_bucket": "zappa-ey1rydodv",
+        "region": "us-east-1"
+    }
+}
