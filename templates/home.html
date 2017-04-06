@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+.modal {
+  text-align: center;
+  padding: 0!important;
+}
+
+.modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px;
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+</style>
+
+
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">Quick Reminder</a>
+      </div>
+      <div id="navbar" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Home</a></li>
+<!--           <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li> -->
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <div class="starter-template">
+      <h1>Quick Reminder</h1>
+      <p class="lead">Need a way to remind your customers about their appointment? Use quick reminder!</p>
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        <div class="alert alert-{{ category }}" role="alert">
+          <center>{{ message|safe }}</center>
+        </div>
+      {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    <div class="row">
+            <div class="col-md-4">
+              <h2>Basic Plan</h2>
+              <p><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Custom text message or phone call</p>
+              <p><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> 200 reminders</p>
+              <button type="button" class="btn btn-lg btn-success" data-toggle="modal" data-target="#plan-modal" onclick="document.getElementById('plan').value = 'basic';">$20.00 monthly »</button>
+            </div>
+            <div class="col-md-4">
+              <h2>Business Plan</h2>
+              <p><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Custom text message or phone call</p>
+              <p><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> 400 reminders</p>
+              <button type="button" class="btn btn-lg btn-success" data-toggle="modal" data-target="#plan-modal" onclick="document.getElementById('plan').value = 'business';">$40.00 monthly »</button>
+           </div>
+           <div class="col-md-4">
+              <h2>Enterprise Plan</h2>
+              <p><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Custom text message or phone call</p>
+              <p><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Dedicated Support</p>
+              <p><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> 2500 reminders</p>
+              <button type="button" class="btn btn-lg btn-success" data-toggle="modal" data-target="#plan-modal" onclick="document.getElementById('plan').value = 'enterprise';">$100.00 monthly »</button>
+            </div>
+    </div>
+
+    <div style="display: inline-block; margin-left:120px; margin-top: 12px;">
+      <img src="/static/images/iphone-reminder.png" style="width:240px; border: 1px solid black; display: inline-block;">
+    </div>
+    <div style="display: inline-block; margin-left: 120px;">
+      <img src="/static/images/email-reminder.png" style="width:480px; border: 1px solid black; display: inline-block;">
+    </div>
+
+  </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="plan-modal" tabindex="-1" role="dialog" aria-labelledby="plan-modal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Interested in buying our plan?</h4>
+          </div>
+          <form action="/" method="post">
+          <div class="modal-body">
+            <p>We're still working on developing this tool -- if you are interested in subscribing, please let us know! We'll give you a <b>20% discount</b> when it's available!</p>
+            
+            <p>Email: <input type="text" name="email" id="email"></p>
+            <input type="hidden" name="plan" id="plan">
+            
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Submit Email</button>
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /.container -->
+
+
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"><\/script>')</script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+{% endblock %}
