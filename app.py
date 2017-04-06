@@ -1,9 +1,9 @@
 from flask import Flask, render_template, request, flash, redirect
-from twilio.rest import TwilioRestClient
+# from twilio.rest import TwilioRestClient
 import os
 from config import app
 
-client = TwilioRestClient(account=app.config['TWILIO_ACCOUNT_SID'], token=app.config['TWILIO_AUTH_TOKEN'])
+# client = TwilioRestClient(account=app.config['TWILIO_ACCOUNT_SID'], token=app.config['TWILIO_AUTH_TOKEN'])
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
@@ -18,16 +18,16 @@ def home():
             return redirect('/')
     return render_template("home.html")
 
-@app.route("/new", methods=['GET', 'POST'])
-def new():
-    if request.method == 'POST':
-        r = client.messages.create(
-            body=request.form['body'],
-            to=request.form['phone_number'],
-            from_="2015618328"
-        )
-        print r
-    return render_template("new.html")
+# @app.route("/new", methods=['GET', 'POST'])
+# def new():
+#     if request.method == 'POST':
+#         r = client.messages.create(
+#             body=request.form['body'],
+#             to=request.form['phone_number'],
+#             from_="2015618328"
+#         )
+#         print r
+#     return render_template("new.html")
 
 @app.route('/register', methods=['GET'])
 def register():

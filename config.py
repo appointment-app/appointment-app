@@ -8,6 +8,7 @@ try:
 	app.config['SERVER'] = 'local'
 	print(">>> Development configuration file loaded.")
 	app.config['DEBUG'] = True
-	print app.config
 except:
-	pass
+	app.config['SERVER'] = 'production'
+	app.config['DEBUG'] = False
+	app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
