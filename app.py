@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, flash, redirect
 # from twilio.rest import TwilioRestClient
 import os
-from config import app
+from config import app, db
 
 # client = TwilioRestClient(account=app.config['TWILIO_ACCOUNT_SID'], token=app.config['TWILIO_AUTH_TOKEN'])
 
@@ -10,6 +10,7 @@ def home():
     if request.method == "POST":
         form = request.form
         if "@" in form['email'] and "." in form['email']:
+            db.subscribers.insert({"email" : form['email'], "plan" : form['plan']})
             print "Email: %s Plan: %s" % (form['email'], form['plan'])
             flash("<b>Thank you!</b> We'll contact you as soon as possible.", "success")
             return redirect('/')
